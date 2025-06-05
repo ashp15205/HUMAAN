@@ -7,13 +7,13 @@ const deleteChatButton = document.querySelector("#delete-chat-button");
 let userMessage = null;
 let isResponseGenerating = false;
 
-const API_KEY = "AIzaSyChU8Bd_6JUKzeBlocL8x_ARmqEKEhESBU";
+const API_KEY = "YOUR-GOOGLE-GEMINI-API-KEY";
 const API_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${API_KEY}`;
 
 // Keywords to filter only mental health queries
 const mentalHealthKeywords = [
   "stress", "anxiety", "depression", "mental health", "emotions", "panic", "sad", "lonely", "hi", "hello", "study", "academics",
-  "overwhelmed", "tired", "burnout", "motivation", "self-care", "support", "fear", "worry",
+  "overwhelmed", "tired", "burnout", "motivation", "self-care", "support", "fear", "worry", "demotivated", "failure", "fail",
   "therapy", "balance", "academic", "mental", "well-being", "sleep", "relax", "confusion", "consfused"
 ];
 
