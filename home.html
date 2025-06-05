@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>HUMAAN - Home</title>
+  <link rel="icon" href="./logo.png" type="image/png" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css"/>
+  <link rel="stylesheet" href="./home.css" />
+</head>
+<body>
+
+<div class="container-fluid">
+  <div class="sidebar">
+    <img src="logo.png" style="height: 80px; width: 80px; align-self: center; border-radius: 30%;" onclick="refreshPage()">
+    <h3 onclick="refreshPage()">HUMAAN</h3>
+  
+    <ul>
+      <li onclick="loadContent('profile')" id="profile-tab">Profile</li>
+      <li onclick="loadContent('dashboard')" id="dashboard-tab">Take Quiz</li>
+      <li onclick="loadContent('chatbot')" id="chatbot-tab">AI Chatbot</li>
+      <li onclick="loadContent('consultants')" id="consultants-tab">Consultants</li>
+      <li onclick="loadContent('resources')" id="resources-tab">Resources</li> 
+    </ul>
+  </div>
+
+  <div class="main-content" id="main-content">
+    <!-- Dynamic content will load here -->
+  </div>
+</div>
+
+<script>
+  function refreshPage() {
+  const activeTab = localStorage.getItem("activeTab") || "profile"; // Default to 'profile' if no active tab is saved
+  if (activeTab === "profile") {
+    // If already on the profile, refresh the page and stay on profile section
+    window.location.reload();
+  } else {
+    // If working on another section, just refresh content (without navigating)
+    loadContent(activeTab);  // Reload the current active section
+  }
+}
+  const questions = [
+    "😞 Little interest or pleasure in doing things?",
+    "😔 Feeling down, depressed, or hopeless?",
+    "😴 Trouble sleeping or sleeping too much?",
+    "😩 Feeling tired or having little energy?",
+    "🍔 Poor appetite or overeating?",
+    "🙁 Feeling bad about yourself or feeling like a failure?",
+    "🤯 Trouble concentrating?",
+    "🐢 Moving or speaking so slowly others noticed?",
+    "💭 Thoughts of self-harm or hopelessness?",
+    "📚 Feeling overwhelmed by academic tasks?",
+    "🕒 Trouble managing time effectively?",
+    "📈 Pressure to meet high expectations?",
+    "📝 Frequent test anxiety?",
+    "🎓 Struggling to balance study and life?",
+    "📉 Lack of motivation to study?"
+  ];
+
+  let currentQ = 0;
+  let score = 0;
+
+  function startQuiz() {
+  currentQ = 0;
+  score = 0;
+
+  // Hide intro and show quiz
+  const intro = document.getElementById("quizIntro");
+  const quizSection = document.getElementById("quizSection");
+
+  if (intro) intro.style.display = "none";
+  if (quizSection) quizSection.style.display = "block";
+
+  showQuestion();
+}
+
+
+
+  function showQuestion() {
+    const card = document.getElementById("quizCard");
+    if (!card) return;
+
+    if (currentQ >= questions.length) {
+        let history = JSON.parse(localStorage.getItem("quizHistory")) || [];
+        history.push({
+            date: new Date().toLocaleString(),
+            score: score,
+            total: questions.length * 3
+        });
+        localStorage.setItem("quizHistory", JSON.stringify(history));
+
+        card.innerHTML = `
+    <h4>✅ Quiz Completed</h4>
+    <p>Your Score: <strong>${score} / ${questions.length * 3}</strong></p>
+    <div id="recommendations"></div>
+    <button class="btn btn-success mt-3" onclick="startQuiz()">Retake Quiz</button>
+`;const recommendations = document.getElementById("recommendations");
+
+if (score <= 10) {
+  recommendations.innerHTML = `
+    <h5>🌟 You're doing well! Let's keep that momentum going.</h5>
+    <ul>
+      <li>💆‍♂️ Continue prioritizing self-care and mental well-being.</li>
+      <li>🫂 Spend time with friends and loved ones.</li>
+      <li>🎨 Enjoy hobbies or creative activities that make you feel fulfilled.</li>
+    </ul>
+  `;
+} else if (score <= 20) {
+  recommendations.innerHTML = `
+    <h5>😊 You're doing okay, but there's always room for self-care.</h5>
+    <p>Maintain your well-being by focusing on balance:</p>
+    <ul>
+      <li>⚖️ Strive for a healthy work-life balance.</li>
+      <li>🏃‍♂️ Add regular physical activity to your routine.</li>
+      <li>🧘‍♀️ Practice calming techniques like yoga or deep breathing.</li>
+      <li>🌍 Stay socially engaged and seek support when needed.</li>
+    </ul>
+  `;
+} else if (score <= 30) {
+  recommendations.innerHTML = `
+    <h5>🙂 It seems you're facing some difficulties, but you're not alone.</h5>
+    <p>Small steps can make a big difference. Try these strategies:</p>
+    <ul>
+      <li>📝 Keep a journal to express and understand your thoughts.</li>
+      <li>🎯 Set small, achievable goals each day.</li>
+      <li>👥 Stay connected with supportive friends or family members.</li>
+      <li>⏸️ Take regular breaks to recharge during work or study.</li>
+    </ul>
+  `;
+} else if (score <= 40) {
+  recommendations.innerHTML = `
+    <h5>😟 You may be experiencing significant mental health challenges.</h5>
+    <p>Please remember, you're not alone—and support is available. Here are a few steps you can take:</p>
+    <ul>
+      <li>💬 Speak with a mental health professional for guidance.</li>
+      <li>🧘‍♂️ Try mindfulness or relaxation exercises to reduce stress.</li>
+      <li>😴 Prioritize quality sleep and a healthy diet.</li>
+      <li>💖 Consider regular counseling or therapy for long-term support.</li>
+    </ul>
+    <p>📚 You may also find helpful tips in our mental health resources section.</p>
+  `;
+} else {
+  recommendations.innerHTML = `
+    <h5>🌈 You're thriving—and it shows!</h5>
+    <ul>
+      <li>💪 Keep up your healthy habits and daily routines.</li>
+      <li>🧘‍♂️ Make time for mindfulness and rest.</li>
+      <li>💬 Inspire and support others with your positive energy!</li>
+    </ul>
+  `;
+}
+
+        updateProgress();
+        return;
+    }
+
+    const q = questions[currentQ];
+    card.classList.remove("animate");
+    void card.offsetWidth;
+    card.classList.add("animate");
+
+    card.innerHTML = `
+        <h5>${q}</h5>
+        <button class="option-btn" onclick="nextQuestion(0)">Not at all</button>
+        <button class="option-btn" onclick="nextQuestion(1)">Several days</button>
+        <button class="option-btn" onclick="nextQuestion(2)">More than half the days</button>
+        <button class="option-btn" onclick="nextQuestion(3)">Nearly every day</button>
+    `;
+
+    updateProgress();
+  }
+
+  function nextQuestion(points) {
+    score += points;
+    currentQ++;
+    showQuestion();
+  }
+
+  function updateProgress() {
+    const progress = (currentQ / questions.length) * 100;
+    const bar = document.getElementById("progressBar");
+    if (bar) {
+      bar.style.width = `${progress}%`;
+    }
+  }
+
+  function clearActiveTabs() {
+    document.querySelectorAll(".sidebar ul li").forEach(tab => tab.classList.remove("active"));
+  }
+
+  function loadContent(section) {
+    clearActiveTabs();
+    document.getElementById(`${section}-tab`).classList.add("active");
+
+    const mainContent = document.getElementById("main-content");
+
+    switch (section) {
+      case "dashboard":
+  mainContent.innerHTML = `
+    <div class="quiz-container">
+      <div id="quizIntro">
+        <h2>🧠 Mental Health & Academic Wellness Quiz</h2>
+        <p>
+          This quiz is designed to help you reflect on your emotional well-being, academic stress, and self-care habits.
+          It takes just 10 minutes to complete and will give you personalized suggestions based on your responses.
+        </p>
+        <ul>
+          <li>💡 Understand your current mental and emotional state</li>
+          <li>📊 Track patterns over time (history is saved locally)</li>
+          <li>🔐 Completely private — your answers are not shared</li>
+        </ul>
+        <p>Click the button below to begin the quiz when you're ready.</p>
+        <button class="btn btn-success mt-3" onclick="startQuiz()">Start Quiz</button>
+      </div>
+
+      <div id="quizSection" style="display:none;">
+        <h2>🧠 Mental Health & Academic Wellness Quiz</h2>
+        
+        <div id="progressContainer"><div id="progressBar"></div></div>
+        <div id="quizCard" class="quiz-card animate"></div>
+      </div>
+    </div>
+  `;
+  break;
+
+
+        case "chatbot":
+  mainContent.innerHTML = `
+    <div class="content-card">
+      <h1>💬 AI CHATBOT</h1>
+      <p class="mb-3">
+        Meet <strong>HUMAAN</strong>, your 24/7 virtual companion for mental wellness. 
+        Whether you're feeling stressed, anxious, low on motivation, or just need someone to talk to, HUMAAN is here to help.
+      </p>
+      <h5>🌟 What can it help you with?</h5>
+      <ul>
+        <li>🧘 Stress and anxiety relief techniques</li>
+        <li>🎯 Focus and productivity support</li>
+        <li>📚 Academic pressure guidance</li>
+        <li>💬 Emotional encouragement & grounding conversations</li>
+      </ul>
+      <h5 class="mt-4">📌 How to use it?</h5>
+      <ul>
+        <li>Type a question or feeling you'd like to talk about</li>
+        <li>Get instant, empathetic responses</li>
+      </ul>
+      <div class="mt-4">
+        <a href="./chatbot/index.html" target="_blank" class="btn btn-primary">
+          🚀 Launch Chat Assistant
+        </a>
+      </div>
+    </div>
+  `;
+  break;
+
+
+      case "consultants":
+        mainContent.innerHTML = `
+          <div class="content-card">
+            <h1>🔎 Find Mental Health Consultants</h1>
+            <p>Enter your city or area to find nearby mental health professionals.</p>
+            <div class="form-group">
+              <input type="text" id="locationInput" class="form-control" placeholder="e.g., Mumbai, Delhi"  onkeydown="handleKeyPress(event)"/>
+            </div>
+            <div class="button-container">
+    <button class="btn btn-primary" onclick="searchConsultants()">Search</button>
+  </div>
+          </div>
+        `;
+        break;
+
+        case "resources":
+  mainContent.innerHTML = `
+    <div class="content-card">
+      <h1>📖 Health & Wellness Resources</h1>
+      
+      <p><strong>General Healthcare Tips:</strong></p>
+      <ul>
+        <li>🧘‍♂️ Stay hydrated by drinking enough water daily.</li>
+        <li>🛌 Ensure you get at least 7-8 hours of sleep.</li>
+        <li>🥗 Maintain a balanced diet, including fruits and vegetables.</li>
+        <li>🏃 Exercise regularly to stay active and reduce stress.</li>
+      </ul>
+
+      <h3 class="mt-4">📹 Recommended Videos</h3>
+      <div class="embed-responsive embed-responsive-16by9 mb-3">
+        <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/3QIfkeA6HBY" allowfullscreen></iframe>
+      </div>
+      <div class="embed-responsive embed-responsive-16by9 mb-3">
+        <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/ZToicYcHIOU" allowfullscreen></iframe>
+      </div>
+
+      <h3 class="mt-4">📰 Blogs & Articles</h3>
+      <ul>
+        <li><a href="https://www.healthline.com/" target="_blank">Healthline</a> - Trusted health information and advice.</li>
+        <li><a href="https://www.mayoclinic.org/" target="_blank">Mayo Clinic</a> - Expert health articles and resources.</li>
+        <li><a href="https://www.webmd.com/" target="_blank">WebMD</a> - Medical news and expert advice.</li>
+      </ul>
+    </div>
+  `;
+  break;
+
+
+      case "profile":
+        const name = localStorage.getItem("userName") || "User";
+        const email = localStorage.getItem("userEmail") || "Not available";
+        const phone = localStorage.getItem("userPhoneNumber") || "Not available";
+        const history = JSON.parse(localStorage.getItem("quizHistory")) || [];
+
+        mainContent.innerHTML = `
+          <div class="content-card">
+            <h1>📝 Profile</h1>
+            <p class="profile-detail">👤 <strong>Name:</strong> ${name}</p>
+            <p class="profile-detail">📧 <strong>Email:</strong> ${email}</p>
+            <p class="profile-detail">📞 <strong>Phone:</strong> ${phone}</p>
+            <h5>📊 <strong>Quiz History:</strong></h5>
+            <ul>${history.map(entry => `<li>${entry.date} &nbsp;: ${entry.score}/${entry.total}</li>`).join('')}</ul>
+            <button class="btn btn-warning mt-3" onclick="clearQuizHistory()">Clear Quiz History</button>
+            <button class="btn btn-danger" onclick="logout()">Logout</button>
+          </div>
+        `;
+        break;
+
+      default:
+        mainContent.innerHTML = `<div class="content-card"><h1>Welcome</h1><p>Select an option from the sidebar to get started.</p></div>`;
+        break;
+    }
+
+    localStorage.setItem("activeTab", section);
+  }
+
+  window.onload = () => {
+  const activeTab = localStorage.getItem("activeTab") || "profile"; // Default to profile section
+  loadContent(activeTab);
+};
+  function clearQuizHistory() {
+    localStorage.removeItem("quizHistory");
+    loadContent("profile");
+  }
+
+  function searchConsultants() {
+    const location = document.getElementById("locationInput").value;
+    console.log("Searching for consultants in:", location);
+    if (location === "") return alert("Please enter a location.");
+    const query = `mental health consultants in ${location}`;
+    window.open(`https://www.google.com/maps/search/${encodeURIComponent(query)}`, "_blank");
+  }
+
+  function logout() {
+    localStorage.clear();
+    alert("You have been logged out.");
+    window.location.href = "./login.html";
+  }
+
+  function handleKeyPress(event) {
+    if (event.key === 'Enter') {
+        searchConsultants();
+    }
+}
+</script>
+</body>
+</html>

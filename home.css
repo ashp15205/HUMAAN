@@ -1,0 +1,307 @@
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+  
+body {
+    margin: 0;
+    font-family: 'Orbitron', sans-serif;
+    background-color: #e4e3e3; /* Dark background */
+    color: #E0E0E0; /* Light grey text */
+}
+
+  
+/* Flex container for layout */
+.container-fluid {
+    display: flex;
+    height: 100vh;
+    background: url('https://example.com/your-gaming-background.jpg') no-repeat center center fixed;
+    background-size: cover;
+    transition: all 0.3s ease;
+    overflow: hidden;
+    padding: 20px; 
+}
+  
+/* Sidebar Styles */
+.sidebar {
+    width: 300px;
+    background: linear-gradient(180deg, #c011e8 0%, #c317b5 100%); /* Dark gradient */
+    display: flex;
+    flex-direction: column;
+    padding: 40px;
+    color: #E0E0E0; /* Light text for contrast */
+    height: 100%;
+    box-shadow: 2px 0 15px rgba(0, 0, 0, 0.7);
+    border-right: 2px solid #8E44AD; /* Purple highlight for border */
+    border-radius: 15px;
+    margin-right: 20px;
+}
+  
+.sidebar h3 {
+    text-align: center;
+    font-weight: 700;
+    font-size: 2rem;
+    letter-spacing: 1px;
+    color: #220031; /* Purple accent for titles */
+    margin-bottom: 40px;
+    text-transform: uppercase;
+}
+  
+.sidebar ul {
+    list-style-type: none;
+    padding-left: 0;
+    margin: 0;
+    flex-grow: 1;
+}
+  
+.sidebar ul li {
+    padding: 18px 30px;
+    cursor: pointer;
+    font-size: 1.1rem;
+    text-transform: uppercase;
+    border-left: 4px solid transparent;
+    transition: all 0.3s ease;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+  
+.sidebar ul li:hover {
+    background-color: #06b100; /* Purple for hover */
+    color: #fff;
+    border-left: 4px solid #fff;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+}
+  
+.sidebar ul li.active {
+    background-color: #1246f3; /* Golden for active state */
+    color: #fff;
+    border-left: 4px solid #fff;
+}
+  
+/* Main Content Area */
+.main-content {
+    flex-grow: 1;
+    padding: 50px;
+    background: linear-gradient(180deg, #c011e8 0%, #c317b5 100%);  /* Dark background for content */
+    box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.5);
+    color: #E0E0E0; /* Light grey text */
+    margin-left: 20px;
+    border-radius: 15px;
+    
+}
+  
+/* Content Cards */
+
+.container-fluid .content-card {
+    background-color: #fefefe;
+    padding: 40px;
+    margin: 0px auto;
+    border-radius: 20px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+    max-width: 700px;
+    height: 100%; /* Limit height if needed */
+    overflow-y: auto;  /* Enables scroll if content overflows */
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    color: #121212;
+    font-size: large;
+}
+.content-card iframe {
+    align-content: center;
+    justify-content: center;
+    width: 80%;
+    height: 215px;
+    border-radius: 12px;
+    border: none;
+}
+
+.content-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
+}
+  
+h1 {
+    color: #F39C12; /* Golden color for headings */
+    font-weight: 700;
+    margin-bottom: 30px;
+    font-size: 2.5rem;
+    text-transform: uppercase;
+}
+  
+/* Profile Details */
+.profile-detail {
+    font-size: 1.2rem;
+    margin: 12px 0;
+    color: #0a0909;
+}
+/* Buttons */
+.btn-danger {
+    background-color: #E74C3C;
+    border: none;
+    padding: 15px;
+    border-radius: 12px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.2s ease;
+    width: 50%;
+    margin: 20px auto 0; /* Top margin + auto for horizontal centering */
+    display: block;
+    margin-top: 70px;
+  }
+  
+  
+.btn-danger:hover {
+    background-color: #C0392B; /* Darker red for hover effect */
+    transform: translateY(-3px);
+}
+  
+.btn-danger:active {
+    transform: translateY(3px);
+}
+  
+  
+/* Quiz Section */
+/* Container for the quiz */
+.quiz-container {
+    max-width: 100%;
+    width: 90%; /* Use percentage width to make it responsive */
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #000000;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    animation: fadeIn 0.5s ease;
+    transition: transform 0.3s ease;
+    margin-bottom: 50px;
+}
+
+/* Quiz card styling */
+.quiz-card {
+    background: #ffffff;
+    padding: 30px;
+    border-radius: 16px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease-in-out;
+    margin-bottom: 30px;
+    color: #000000;
+    font-size: large;
+}
+
+/* Hover effect for quiz card */
+.quiz-card:hover {
+    transform: scale(1.025); /* Slight zoom effect */
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+    .quiz-container {
+        width: 95%;
+        padding: 15px;
+    }
+
+    .quiz-card {
+        padding: 20px;
+    }
+}
+
+/* Additional fade-in animation */
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+  
+/* Option Button */
+.option-btn {
+    display: block;
+    width: 100%;
+    padding: 15px;
+    border-radius: 12px;
+    background-color: #b333e9; /* Purple for option buttons */
+    font-size: 1.2rem;
+    text-align: center;
+    cursor: pointer;
+    border: none;
+    transition: background-color 0.3s, transform 0.2s;
+    margin: 10px 0;
+}
+  
+.option-btn:hover {
+    background-color: #ffaf2f; /* Golden for hover effect */
+    transform: scale(1.05);
+}
+  
+.option-btn:active {
+    transform: scale(0.98);
+}
+  
+/* Progress Bar */
+#progressContainer {
+    width: 100%;
+    background: #444;
+    border-radius: 10px;
+    margin: 20px 0;
+    height: 12px;
+}
+  
+#progressBar {
+    height: 100%;
+    width: 0%;
+    background: #38d77a; /* Green for progress bar */
+    border-radius: 10px;
+    transition: width 0.3s ease;
+}
+
+
+/* Quiz Intro Section */
+#quizIntro {
+    background-color: #ffffff;
+    color: #121212;
+    padding: 30px;
+    border-radius: 16px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+    max-width: 700px;
+    margin: 30px auto;
+    animation: fadeIn 0.6s ease;
+  }
+h2{
+   
+        color: #F39C12; /* Golden color for headings */
+        font-weight: 600;
+        margin-bottom: 30px;
+        font-size: 2rem;
+        text-transform: uppercase;
+    
+  }
+  
+  /* Quiz Section */
+  #quizSection {
+    animation: fadeIn 0.6s ease;
+  }
+  
+  /* Start Quiz Button Styling */
+  #quizIntro .btn-success {
+    padding: 12px 25px;
+    font-size: 1.1rem;
+    border-radius: 10px;
+    transition: all 0.3s ease-in-out;
+  }
+  
+  #quizIntro .btn-success:hover {
+    background-color: #28a745;
+    transform: scale(1.05);
+  }
+
+  .button-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px; /* Adds space above the button */
+  }
+  

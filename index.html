@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>HUMAAN | Main</title>
+  <link href="https://fonts.googleapis.com/css?family=Poppins:400,500,600,700,800,900" rel="stylesheet">
+  <style>
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 300;
+      line-height: 1.8;
+      margin: 0;
+      padding: 0;
+      background-color: #EDE9FE;
+      color: #333;
+    }
+
+    header {
+      background-color: #6B46C1;
+      color: white;
+      padding: 20px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 32px;
+      letter-spacing: 2px;
+    }
+
+    nav a {
+      color: white;
+      margin: 0 20px;
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 18px;
+      transition: color 0.3s;
+    }
+
+    nav a:hover {
+      color: #E9D8FD;
+    }
+
+    .section {
+      padding: 10px 50px 30px;
+      display:flexbox;
+      margin: 20px;
+      opacity: 0;
+      transform: translateY(40px);
+      animation: fadeInUp 1s forwards;
+    }
+
+    .section h2 {
+      font-size: 38px;
+      margin-bottom: 20px;
+    }
+
+    .section p, .features ul {
+      font-size: 18px;
+      font-weight: 500;
+      line-height: 1.7;
+    }
+
+    .btn {
+      border: none;
+      padding: 14px 30px;
+      font-size: 16px;
+      font-weight: 600;
+      border-radius: 8px;
+      cursor: pointer;
+      margin-top: 30px;
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    /* Unique Section Styles */
+    #home {
+      background: linear-gradient(135deg, #F3E8FF, #E9D8FD);
+      color: #4A148C;
+    }
+
+    #about {
+      background: linear-gradient(to right, #E0F7FA, #B2EBF2);
+      color: #006064;
+    }
+
+    #features {
+      background: linear-gradient(to right, #FFFDE7, #FFF9C4);
+      color: #827717;
+    }
+
+    /* Unique Buttons */
+    .btn-home {
+      background-color: #6B46C1;
+      color: white;
+      box-shadow: 0 4px 14px rgba(107, 70, 193, 0.4);
+    }
+
+    .btn-home:hover {
+      background-color: #4A148C;
+    }
+
+    .btn-about {
+      background-color: #00ACC1;
+      color: white;
+      box-shadow: 0 4px 10px rgba(0, 172, 193, 0.4);
+    }
+
+    .btn-about:hover {
+      background-color: #00796B;
+    }
+
+    .btn-features {
+      background-color: #FBC02D;
+      color: #fff;
+      box-shadow: 0 4px 10px rgba(251, 192, 45, 0.4);
+    }
+
+    .btn-features:hover {
+      background-color: #F9A825;
+    }
+
+    @keyframes fadeInUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .features ul {
+      list-style: none;
+      padding-left: 0;
+      margin-top: 20px;
+    }
+
+    .features ul li {
+      margin-bottom: 16px;
+      padding-left: 25px;
+      position: relative;
+    }
+
+    .features ul li::before {
+      content: "✔";
+      position: absolute;
+      left: 0;
+      color: #6B46C1;
+      font-weight: bold;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      background-color: #6B46C1;
+      color: white;
+      font-size: 14px;
+      margin-top: 50px;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>HUMAAN</h1>
+    <nav>
+      <a href="#home">Home</a>
+      <a href="#about">About Us</a>
+      <a href="#features">Features</a>
+    </nav>
+  </header>
+
+  <section id="home" class="section hero">
+    <h2>Your Mental Health Matters 🧠💜</h2>
+    <p>
+      At HUMAAN, we believe in supporting your mental well-being with kindness and care.
+      Mental health is just as important as physical health. Our platform is here to help
+      you understand your emotions and take meaningful steps toward better mental clarity.
+      <br><br>
+      Start your journey with us. You're never alone.
+    </p>
+    <a href="login.html" class="btn btn-home">Get Started</a>
+  </section>
+
+  <section id="about" class="section">
+    <h2>About Us</h2>
+    <p>
+      HUMAAN is a platform built with compassion and technology to assist people in managing their mental health.
+      Whether you're seeking clarity, need someone to talk to, or are looking for helpful resources, we are here for you.
+      <br><br>
+      Our mission is to break the stigma surrounding mental health and provide a safe, judgment-free space for healing,
+      growth, and self-discovery.
+    </p>
+    <a href="login.html" class="btn btn-about">Try Now</a>
+  </section>
+
+  <section id="features" class="section features">
+    <h2>Key Features</h2>
+    <ul>
+      <li>AI-powered mental health chatbot available 24/7</li>
+      <li>Mental Health Quiz</li>
+      <li>Personalized mental wellness tips and content</li>
+      <li>Secure and anonymous conversations</li>
+      <li>Easy-to-use interface with a calming design</li>
+      <li>Connect with Professionals</li>
+      <li>Resource center with articles, tools, and activities</li>
+    </ul>
+    <a href="login.html" class="btn btn-features">Explore Now</a>
+  </section>
+
+  <footer>
+    Made By Ashish Patil || CEP Project
+  </footer>
+</body>
+</html>
