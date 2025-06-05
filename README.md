@@ -6,18 +6,6 @@ This project introduces an AI-integrated platform that provides personalized men
 
 ---
 
-## 📑 Table of Contents
-
-- [🎯 Objectives](#-objectives-of-this-project)
-- [🧠 Methodology](#-methodology)
-- [🌟 Uniqueness](#-uniqueness)
-- [🔁 Workflow](#-workflow)
-- [🖼️ Screenshots](#-screenshots)
-- [🛠️ Tech Stack](#-techstack)
-- [📌 Future Scope](#-future-scope)
-
----
-
 ## 🎯 Objectives of This Project
 
 1. **Mental Health Evaluation**  
@@ -77,7 +65,7 @@ This project introduces an AI-integrated platform that provides personalized men
 
 ---
 
-## 🖼️Screenshots
+## 🖼️ Screenshots
 
 a. Login Page
 
